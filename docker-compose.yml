@@ -1,0 +1,48 @@
+#daniel version: 1
+version: '2'
+services:
+  danielrhodeswarp-foundation-cli-server-basic:
+    #poorly doc'd, but (just) 'build' should be a *folder* containing a "Dockerfile"
+    build: ./docker_config/foundation_cli_server_basic
+
+
+    volumes:
+    - ./foundation_projects/basic_template:/foundation_basic
+    #links:
+    #- danielrhodeswarp-lamp-headless-mariadb
+  danielrhodeswarp-foundation-cli-server-zurb:
+    #poorly doc'd, but (just) 'build' should be a *folder* containing a "Dockerfile"
+    build: ./docker_config/foundation_cli_server_zurb
+    ports:
+        #BrowserSync
+     - "8000:8000"
+
+        #BrowserSync UI
+     - "3001:3001"
+
+
+    volumes:
+    - ./foundation_projects/zurb_template:/foundation_zurb
+    #links:
+    #- danielrhodeswarp-lamp-headless-mariadb
+  danielrhodeswarp-foundation-cli-interactive:
+    #poorly doc'd, but (just) 'build' should be a *folder* containing a "Dockerfile"
+    build: ./docker_config/foundation_cli_interactive
+
+    volumes:
+    - ./foundation_projects:/foundation_projects
+    #links:
+    #- danielrhodeswarp-lamp-headless-mariadb
+
+  #danielrhodeswarp-lamp-headless-mariadb:
+  #  #    build: ./docker_config/mariadb
+  #  image: mariadb:latest
+  #  environment:
+  #  - MYSQL_ROOT_PASSWORD=secret
+  #  #- MYSQL_DATABASE=blah
+  #  #- MYSQL_USER=blah
+  #  #- MYSQL_PASSWORD=blah
+  #  #- MYSQL_ALLOW_EMPTY_PASSWORD=blah
+  #  #- MYSQL_ONETIME_PASSWORD=blah
+  #  ports:
+  #  - "3306:3306"
